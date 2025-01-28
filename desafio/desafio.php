@@ -11,26 +11,33 @@ function cakes($receita, $ingredientes){
     $qtdDisponivel = $ingredientes[$ingrediente];
     $bolos[] = floor($qtdDisponivel / $qtdMinima);
   } //Calcula a quantidade de bolos que podem ser feitos
-  
   return min($bolos);   
   //Retorna o número de bolos com base no ingrediente em menor quantidade
 }
 
-// Abaixo estão os casos de uso:
-var_dump(cakes(
-  ['flour' => 500, 'sugar' => 200, 'eggs' => 1], 
-  ['flour' => 1200, 'sugar' => 1200, 'eggs' => 5, 'milk' => 200]) 
-  === 2); 
+try {
 
-var_dump(cakes(
-  ['apples' => 3, 'flour' => 300, 'sugar' => 150, 'milk' => 100, 'oil' => 100], 
-  ['sugar' => 500, 'flour' => 2000, 'milk' => 2000]) 
-  === 0); 
+  $result1 = cakes(
+    ['flour' => 500, 'sugar' => 200, 'eggs' => 1], 
+    ['flour' => 1200, 'sugar' => 1200, 'eggs' => 5, 'milk' => 200]
+  );
+  echo "Teste 1: Podem ser feitos " . $result1 . " bolos\n"; 
 
-var_dump(cakes(
-  ['flour' => 500, 'sugar' => 200, 'eggs' => 1], 
-  ['flour' => 1500, 'sugar' => 1200, 'eggs' => 5, 'milk' => 200]) 
-  === 3); 
+  $result2 = cakes(
+    ['apples' => 3, 'flour' => 300, 'sugar' => 150, 'milk' => 100, 'oil' => 100], 
+    ['sugar' => 500, 'flour' => 2000, 'milk' => 2000]
+  );
+  echo "Teste 2: Podem ser feitos " . $result2 . " bolos\n"; 
+
+    $result3 = cakes(
+    ['flour' => 500, 'sugar' => 200, 'eggs' => 1], 
+    ['flour' => 1500, 'sugar' => 1200, 'eggs' => 5, 'milk' => 200]
+  );
+  echo "Teste 3: Podem ser feitos " . $result3 . " bolos\n"; 
+
+} catch (Exception $e) {
+  echo "Ocorreu um erro ao calcular as receitas: " . $e->getMessage() . "\n";
+}
 
 //Pete gosta de fazer bolos. 
 //Ele tem algumas receitas e ingredientes, 
