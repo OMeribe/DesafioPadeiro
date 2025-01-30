@@ -1,14 +1,14 @@
 <?php
 function cakes($receita, $ingredientes){
-  foreach($receita as $ingrediente => $quantidade){
-    if(!isset($ingredientes[$ingrediente])){
+  foreach($receita as $nome => $quantidade){
+    if(!isset($ingredientes[$nome])){
       return 0;
     }
   } // retorna 0 se não encontrar algum ingrediente da receita
 
   $bolos = [];
-  foreach($receita as $ingrediente => $qtdMinima){
-    $qtdDisponivel = $ingredientes[$ingrediente];
+  foreach($receita as $nome => $qtdMinima){
+    $qtdDisponivel = $ingredientes[$nome];
     $bolos[] = floor($qtdDisponivel / $qtdMinima);
   } //Calcula a quantidade de bolos que podem ser feitos
   return min($bolos);   
